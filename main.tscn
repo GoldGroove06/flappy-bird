@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://xmwps1imx1sa"]
+
+[ext_resource type="PackedScene" uid="uid://b0fvb0xehi8tk" path="res://bird.tscn" id="1_ig7tw"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ig7tw"]
+a = Vector2(479, 10)
+
+[node name="Main" type="Node"]
+
+[node name="Bird" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(148, 276)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 2)
+shape = SubResource("SegmentShape2D_ig7tw")

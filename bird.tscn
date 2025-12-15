@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0fvb0xehi8tk"]
+
+[ext_resource type="Script" uid="uid://y0nejtj8a1ic" path="res://bird.gd" id="1_cchwj"]
+[ext_resource type="Texture2D" uid="uid://dk7sqikwnpbuo" path="res://sprites/bluebird-downflap.png" id="1_j88tq"]
+[ext_resource type="Texture2D" uid="uid://nqfsxq0w18qa" path="res://sprites/bluebird-midflap.png" id="2_cchwj"]
+[ext_resource type="Texture2D" uid="uid://ckbs438lnrq84" path="res://sprites/bluebird-upflap.png" id="3_6ljjq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_j88tq"]
+bounce = 0.2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_axl6x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_j88tq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cchwj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6ljjq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yr30m"]
+
+[node name="Bird" type="RigidBody2D"]
+mass = 0.7
+physics_material_override = SubResource("PhysicsMaterial_j88tq")
+gravity_scale = 0.5
+lock_rotation = true
+script = ExtResource("1_cchwj")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_axl6x")
+frame_progress = 0.99665374
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_yr30m")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
