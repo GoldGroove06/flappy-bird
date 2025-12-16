@@ -1,5 +1,6 @@
 extends RigidBody2D
 var screen_size
+signal hit
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -9,3 +10,8 @@ func _process(delta):
 		print("pressed jump")
 		apply_impulse(Vector2(0, -200))
 		$AnimatedSprite2D.play()
+
+
+
+func _on_body_entered(body: Node):
+	print("hit")

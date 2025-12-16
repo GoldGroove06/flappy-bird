@@ -1,15 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy755y4tu6jnn"]
+[gd_scene load_steps=5 format=3 uid="uid://cy755y4tu6jnn"]
 
+[ext_resource type="Script" uid="uid://c1hvbuwwex74n" path="res://pipe.gd" id="1_78010"]
 [ext_resource type="Texture2D" uid="uid://d0jn7w7nu8xrg" path="res://sprites/pipe-green.png" id="1_bepn3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bepn3"]
-size = Vector2(46, 319)
+size = Vector2(46, 463.5)
 
-[node name="Pipe" type="RigidBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78010"]
+size = Vector2(50, 511.375)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Pipe" type="StaticBody2D"]
+script = ExtResource("1_78010")
+
+[node name="SpriteDown" type="Sprite2D" parent="."]
+position = Vector2(2.0000134, 230)
 texture = ExtResource("1_bepn3")
+metadata/_edit_group_ = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="SpriteUp2" type="Sprite2D" parent="."]
+position = Vector2(2.0000134, 376)
+rotation = 3.1415927
+texture = ExtResource("1_bepn3")
+flip_h = true
+metadata/_edit_group_ = true
+
+[node name="SpriteUp" type="Sprite2D" parent="."]
+position = Vector2(1.0000134, -234)
+rotation = 3.1415927
+texture = ExtResource("1_bepn3")
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(2.0000134, 302.25)
 shape = SubResource("RectangleShape2D_bepn3")
+metadata/_edit_group_ = true
+
+[node name="SpriteDown2" type="Sprite2D" parent="."]
+position = Vector2(1.0000134, -432)
+texture = ExtResource("1_bepn3")
+flip_h = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(1.0000134, -331.3125)
+shape = SubResource("RectangleShape2D_78010")
+metadata/_edit_group_ = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
