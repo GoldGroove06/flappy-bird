@@ -48,3 +48,10 @@ theme_override_font_sizes/font_size = 64
 text = "Flappy Bird"
 
 [node name="MessageTimer" type="Timer" parent="."]
+
+[node name="ScoreTimer" type="Timer" parent="."]
+wait_time = 1.6999999999999997
+
+[connection signal="pressed" from="StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

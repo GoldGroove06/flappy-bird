@@ -1,8 +1,10 @@
 extends Node
 @export var pipe_scene: PackedScene
+@export var bird_scene: PackedScene
+var bird_instance: Node = null
 
 func _ready():
-	$Bird.hide()
+	print("ready")
 	
 func _on_pipe_timer_timeout():
 	var pipe = pipe_scene.instantiate()
@@ -11,16 +13,20 @@ func _on_pipe_timer_timeout():
 
 func game_start():
 	var score = 0
-	$Bird.show()
-	get_tree().call_group("pipes", "queue_free")
-	$HUD.update_score(score)
-	$HUD.show_message("Get Ready")
+	var bird_instance = bird_scene.instantiate()
+	bird_instance.position = Vector2(160,257)
+	add_child(bird_instance)
+	bird_instance.hit.connect(_on_bird_hit)
+	
+	#$HUD.update_score(score)
 	$PipeTimer.start()
 	
 
 func _on_bird_hit():
+	
 	$PipeTimer.stop()
 	$HUD.show_game_over()
 
 func _on_hud_start_game():
+	print("start game")
 	game_start()

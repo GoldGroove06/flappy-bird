@@ -12,6 +12,7 @@ a = Vector2(479, 10)
 [node name="Main" type="Node"]
 script = ExtResource("1_h2yge")
 pipe_scene = ExtResource("2_1bvp3")
+bird_scene = ExtResource("1_ig7tw")
 
 [node name="HUD" parent="." instance=ExtResource("3_lquwl")]
 
@@ -20,9 +21,6 @@ offset_top = 1.0
 offset_right = 482.0
 offset_bottom = 620.0
 texture = ExtResource("4_1bvp3")
-
-[node name="Bird" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(160, 257)
 
 [node name="TopLine" type="StaticBody2D" parent="."]
 
@@ -42,5 +40,4 @@ wait_time = 1.5
 [node name="ScoreTimer" type="Timer" parent="."]
 
 [connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
-[connection signal="hit" from="Bird" to="." method="_on_bird_hit"]
 [connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]

@@ -3,6 +3,7 @@ var screen_size
 signal hit
 
 func _ready():
+	
 	screen_size = get_viewport_rect().size
 
 func _process(delta):
@@ -15,4 +16,6 @@ func _process(delta):
 
 func _on_body_entered(body: Node):
 	hit.emit()
+	$CollisionShape2D.set_deferred("disabled", true)
+	
 	print("hit")
