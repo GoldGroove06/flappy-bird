@@ -5,7 +5,11 @@ extends StaticBody2D
 
 var moving := true
 
+func set_speed(s):
+	speed= s
+
 func _ready():
+	var screen_size = get_viewport().get_visible_rect().size
 	$Timer.wait_time = 1.0
 	$Timer.start()
 

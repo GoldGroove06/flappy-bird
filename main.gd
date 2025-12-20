@@ -4,6 +4,7 @@ extends Node
 var bird_instance: Node = null
 
 func _ready():
+	var screen_size = get_viewport().get_visible_rect().size
 	print("ready")
 	
 func _on_pipe_timer_timeout():
@@ -12,7 +13,10 @@ func _on_pipe_timer_timeout():
 	add_child(pipe)
 
 func game_start():
+	get_tree().call_group("birds", "queue_free")
 	var score = 0
+	get_tree().call_group("pipes", "queue_free")
+	get_tree().call_group("pipes", "set_speed", 150)
 	var bird_instance = bird_scene.instantiate()
 	bird_instance.position = Vector2(160,257)
 	add_child(bird_instance)
@@ -23,7 +27,7 @@ func game_start():
 	
 
 func _on_bird_hit():
-	
+	get_tree().call_group("pipes", "set_speed", 0)
 	$PipeTimer.stop()
 	$HUD.show_game_over()
 
